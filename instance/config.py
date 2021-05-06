@@ -1,0 +1,9 @@
+import os
+
+SECRET_KEY = "mykey"
+DATABASE_HOST = os.environ.get("FLASK_DATABASE_HOST")
+DATABASE_PASSWORD = os.environ.get("FLASK_DATABASE_PASSWORD")
+DATABASE_USER = os.environ.get("FLASK_DATABASE_USER")
+DATABASE = os.environ.get("FLASK_DATABASE")
+CORS_HEADERS = "Content-Type"
+JWT_SECRET_KEY = "1231321as5d4as4dasd"

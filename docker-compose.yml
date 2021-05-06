@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+
+  rip-mysql:
+    container_name: bank-mysql
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    command: --default-authentication-plugin=mysql_native_password       
+    volumes:
+      - ./db_data:/var/lib/mysql  
+    restart: "no"
+    networks:
+      - bank-system 
+
+  rip-back:
+    container_name: bank-back
+    build: .
+    env_file:
+      - '.env'
+    depends_on:
+      - rip-mysql
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./app
+    restart: "always"
+    networks:
+      - bank-system
+
+  # rip-web:
+  #   container_name: bank-web
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile-front
+  #   depends_on:
+  #     - rip-back
+  #   ports:
+  #     - '8080:8080'
+  #   volumes:
+  #     - ./app/client_web
+  #   restart: "always"
+  #   networks:
+  #     - bank-system
+  
+  rip-pma:
+    container_name: bank-pma
+    image: phpmyadmin/phpmyadmin     
+    depends_on:      
+      - rip-mysql
+    ports:      
+      - "8180:80"    
+    restart: "no"   
+    environment:
+     - PMA_ARBITRARY=1 
+     - PMA_HOST=bank-mysql
+     - PMA_USER=bank_user 
+     - PMA_PASSWORD=12345678 
+    networks:
+      - bank-system 
+
+volumes:
+  db_data:
+
+networks:
+  bank-system:     

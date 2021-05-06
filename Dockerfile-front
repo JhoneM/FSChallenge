@@ -1,0 +1,9 @@
+FROM node:10
+
+COPY client_web/ /app
+
+RUN npm install
+
+EXPOSE 8080
+
+CMD ["npm", "run", "serve"]
