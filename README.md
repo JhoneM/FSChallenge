@@ -57,9 +57,9 @@ docker-compose up
 ```
 
 **Step 4:** Abrir el navegador en las siguientes ruta.
-http://localhost:5000/ => Backend
 
 ```
+http://localhost:5000/ => Backend
 El navegador mostrará la pagina de inicio del sistema.
 
 Credenciales para el backend:
@@ -96,11 +96,11 @@ Usuarios de prueba para el cliente web:
 
 Pueden registrar mas clientes si así lo desean.
 
-```
 
 El sistema tambien cuenta con un gestor de bases de datos (PhpMyAdmin) alojado en un contenedor, para ingresar se debe ir a la siguiente ruta:
 ```
 http://localhost:8180/
+
 ```
 
 ## Test
